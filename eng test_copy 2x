@@ -1,0 +1,100 @@
+const slovicka = {
+  "předsíň": "hall",
+  "hall": "předsíň",
+  "dokonalý": "perfect",
+  "perfect": "dokonalý",
+  "nahrát": "record",
+  "record": "nahrát",
+  "dálkové ovládání": "remote control",
+  "remote control": "dálkové ovládání",
+  "opakovat si": "revise",
+  "revise": "opakovat si",
+  "test": "test",
+  "televizor": "TV set",
+  "TV set": "televizor",
+  "program": "programme",
+  "programme": "program",
+  "kresleny film": "cartoon",
+  "cartoon": "kresleny film",
+  "beseda": "chat show",
+  "chat show": "beseda",
+  "zábavní program": "comedy programme",
+  "comedy programme": "zábavní program",
+  "dokument": "documentary",
+  "documentary": "dokument",
+  "natočit, film": "film",
+  "film": "natočit, film",
+  "pořad o přírodě": "nature programme",
+  "nature programme": "pořad o přírodě",
+  "policejní drama": "police drama",
+  "police drama": "policejní drama",
+  "soutěžní kvíz": "quiz show",
+  "quiz show": "soutěžní kvíz",
+  "reality show": "reality show",
+  "telenovela": "soap opera",
+  "soap opera": "telenovela",
+  "sportovní pořad": "sports programme",
+  "sports programme": "sportovní pořad",
+  "zprávy": "the news",
+  "the news": "zprávy",
+  "Jsi v pořádku?": "Are you all right?",
+  "Are you all right?": "Jsi v pořádku?",
+  "pásek": "belt",
+  "belt": "pásek",
+  "deka": "blanket",
+  "blanket": "deka",
+  "dno": "bottom",
+  "bottom": "dno",
+  "kufřík": "briefcase",
+  "briefcase": "kufřík",
+  "u": "by",
+  "by": "u",
+  "opatrně": "carefully",
+  "carefully": "opatrně",
+  "počítačový čip": "computer chip",
+  "computer chip": "počítačový čip",
+  "zemřít": "die",
+  "die": "zemřít",
+  "snadno, lehce": "easily",
+  "easily": "snadno, lehce",
+  "nepřítel": "enemy",
+  "enemy": "nepřítel",
+  "motor": "engine",
+  "engine": "motor",
+  "šťastně": "happily",
+  "happily": "šťastně",
+};
+
+function napovezWocabee() {
+  const question = document.querySelector('#q_word')?.innerText?.trim().toLowerCase();
+  let el = document.getElementById('napovedaWoca');
+
+  if (!el) {
+    el = document.createElement('div');
+    el.id = 'napovedaWoca';
+    el.style.position = 'fixed';
+    el.style.bottom = '20px';
+    el.style.left = '20px';
+    el.style.background = '#222';
+    el.style.color = 'lime';
+    el.style.padding = '10px 20px';
+    el.style.fontSize = '24px';
+    el.style.fontWeight = 'bold';
+    el.style.zIndex = 9999;
+    el.style.borderRadius = '10px';
+    document.body.appendChild(el);
+  }
+
+  if (question) {
+    const answer = slovicka[question];
+    if (answer) {
+      el.textContent = `👉 Odpověď: ${answer}`;
+    } else {
+      el.textContent = `❓ Překlad neznám: ${question}`;
+    }
+  } else {
+    el.textContent = `🕒 Čekám na otázku...`;
+  }
+}
+
+setInterval(napovezWocabee, 1000);
