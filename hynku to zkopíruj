@@ -1,0 +1,57 @@
+const slovicka = {
+  "zehn": "deset",
+  "zwanzig": "dvacet",
+  "dreißig": "třicet",
+  "vierzig": "čtyřicet",
+  "fünfzig": "padesát",
+  "sechzig": "šedesát",
+  "siebzig": "sedmdesát",
+  "achtzig": "osmdesát",
+  "neunzig": "devadesát",
+  "hundert": "sto",
+  "deset": "zehn",
+  "dvacet": "zwanzig",
+  "třicet": "dreißig",
+  "čtyřicet": "vierzig",
+  "padesát": "fünfzig",
+  "šedesát": "sechzig",
+  "sedmdesát": "siebzig",
+  "osmdesát": "achtzig",
+  "devadesát": "neunzig",
+  "sto": "hundert"
+};
+
+function napovezWocabee() {
+  const question = document.querySelector('#q_word')?.innerText?.trim().toLowerCase();
+  let el = document.getElementById('napovedaWoca');
+
+  if (!el) {
+    el = document.createElement('div');
+    el.id = 'napovedaWoca';
+    el.style.position = 'fixed';
+    el.style.bottom = '20px';
+    el.style.left = '20px';
+    el.style.background = '#222';
+    el.style.color = 'lime';
+    el.style.padding = '10px 20px';
+    el.style.fontSize = '24px';
+    el.style.fontWeight = 'bold';
+    el.style.zIndex = 9999;
+    el.style.borderRadius = '10px';
+    document.body.appendChild(el);
+  }
+
+  if (question) {
+    const answer = slovicka[question];
+    if (answer) {
+      el.textContent = `👉 Odpověď: ${answer}`;
+    } else {
+      el.textContent = `❓ Překlad neznám: ${question}`;
+    }
+  } else {
+    el.textContent = `🕒 Čekám na otázku...`;
+  }
+}
+
+setInterval(napovezWocabee, 1000);
+};
