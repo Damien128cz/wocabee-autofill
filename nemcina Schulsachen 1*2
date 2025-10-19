@@ -1,0 +1,80 @@
+const slovicka = {
+  "pravítko": "das Lineal",
+  "kniha": "das Buch",
+  "sešit": "das Heft",
+  "školní taška": "die Schultasche",
+  "ve školní tašce": "in der Schultasche",
+  "nůžky": "die Schere",
+  "pero, propiska - celý název": "der Kugelschreiber",
+  "tužka": "der Bleistift",
+  "pastelka": "der Buntstift",
+  "fixa": "der Filzstift",
+  "kružítko": "der Zirkel",
+  "guma": "der Radiergummi",
+  "ořezávátko": "der Spitzer",
+  "das lineal": "pravítko",
+  "das buch": "kniha",
+  "das heft": "sešit",
+  "die schultasche": "školní taška",
+  "in der schultasche": "ve školní tašce",
+  "die schere": "nůžky",
+  "der kugelschreiber": "pero, propiska - celý název",
+  "der bleistift": "tužka",
+  "der buntstift": "pastelka",
+  "der filzstift": "fixa",
+  "der zirkel": "kružítko",
+  "der radiergummi": "guma",
+  "der spitzer": "ořezávátko",
+  "kalkulačka": "der Taschenrechner",
+  "der taschenrechner": "kalkulačka",
+  "zvýrazňovač": "der Textmarker",
+  "der textmarker": "zvýrazňovač",
+  "batoh": "der Rucksack",
+  "der rucksack": "batoh",
+  "štětec": "der Pinsel",
+  "der pinsel": "štětec",
+  "vodovky": "der Malkasten",
+  "der malkasten": "vodovky",
+  "penál, pouzdro": "das Mäppchen",
+  "das mäppchen": "penál, pouzdro",
+  "tenisky": "die Turnschuhe",
+  "die turnschuhe": "tenisky",
+  "desky": "die Mappe",
+  "die mappe": "desky",
+
+};
+
+function napovezWocabee() {
+  const question = document.querySelector('#q_word')?.innerText?.trim().toLowerCase();
+  let el = document.getElementById('napovedaWoca');
+
+  if (!el) {
+    el = document.createElement('div');
+    el.id = 'napovedaWoca';
+    el.style.position = 'fixed';
+    el.style.bottom = '20px';
+    el.style.left = '20px';
+    el.style.background = '#222';
+    el.style.color = 'lime';
+    el.style.padding = '10px 20px';
+    el.style.fontSize = '24px';
+    el.style.fontWeight = 'bold';
+    el.style.zIndex = 9999;
+    el.style.borderRadius = '10px';
+    document.body.appendChild(el);
+  }
+
+  if (question) {
+    const answer = slovicka[question];
+    if (answer) {
+      el.textContent = `👉 Odpověď: ${answer}`;
+    } else {
+      el.textContent = `❓ Překlad neznám: ${question}`;
+    }
+  } else {
+    el.textContent = `🕒 Čekám na otázku...`;
+  }
+}
+
+setInterval(napovezWocabee, 1000);
+;
