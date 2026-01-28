@@ -1,0 +1,64 @@
+const slovicka = {
+  "já bych chtěl": "ich möchte",
+  "ich möchte": "já bych chtěl",
+  "co bys chtěl jíst?": "Was möchtest du essen?",
+  "Was möchtest du essen?": "Co bys chtěl jíst?",
+  "co máš rád?": "Was magst du?",
+  "Was magst du?": "Co máš rád?",
+  "chceš?": "Möchtest du?",
+  "Möchtest du?": "Chceš?",
+  "chci chleba.": "Ich möchte das Brot.",
+  "Ich möchte das brot.": "Chci chleba.",
+  "nechci mléko.": "Ich möchte keine Milch.",
+  "Ich möchte keine milch.": "Nechci mléko.",
+  "nemám rád kávu.": "Ich mag keinen Kaffee.",
+  "Ich mag keinen kaffee.": "Nemám rád kávu.",
+  "nemám rád guláš.": "Ich mag kein Gulasch.",
+  "Ich mag kein gulasch.": "Nemám rád guláš.",
+  "mám rád": "ich mag",
+  "ich mag": "mám rád",
+  "nemám rád polévku.": "Ich mag keine Suppe.",
+  "Ich mag keine suppe.": "Nemám rád polévku.",
+  "Magst du?": "Máš rád?",
+  "máš rád?": "Magst du?"
+
+};
+
+function napovezWocabee() {
+  const question = document.querySelector('#q_word')?.innerText?.trim().toLowerCase();
+  const answer = slovicka[question];
+
+  if (answer) {
+    let el = document.getElementById('napovedaWoca');
+    if (!el) {
+      el = document.createElement('div');
+      el.id = 'napovedaWoca';
+      el.style.position = 'fixed';
+      el.style.bottom = '20px';
+      el.style.left = '20px';
+      el.style.background = '#222';
+      el.style.color = 'lime';
+      el.style.padding = '10px 20px';
+      el.style.fontSize = '24px';
+      el.style.fontWeight = 'bold';
+      el.style.zIndex = 9999;
+      el.style.borderRadius = '10px';
+      document.body.appendChild(el);
+    }
+    el.textContent = `👉 Odpověď: ${answer}`;
+  } else {
+    console.log("❌ Neznám překlad:", question);
+  }
+}
+
+setInterval(napovezWocabee, 2000);
+
+// 🔥 Toggle viditelnosti po stisku ;
+document.addEventListener("keydown", (e) => {
+  if (e.key === ";") {
+    const el = document.getElementById("napovedaWoca");
+    if (el) {
+      el.style.display = (el.style.display === "none") ? "block" : "none";
+    }
+  }
+});
